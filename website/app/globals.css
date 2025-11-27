@@ -1,0 +1,281 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* 
+ * Playkits.org Color Palette
+ * ---------------------------
+ * deep-twilight: Primary brand (rich purple)
+ * honey-bronze: Accent/CTA (warm orange)
+ * olive-wood: Muted/neutral (earthy tones)
+ * strawberry-red: Destructive/alert
+ * rosewood: Playful accent (pink/magenta)
+ */
+:root {
+  /* Base colors from olive-wood for warm neutral foundation */
+  --background: #f5f4f0;
+  --foreground: #1e1c15;
+  --card: #ffffff;
+  --card-foreground: #1e1c15;
+  --popover: #ffffff;
+  --popover-foreground: #1e1c15;
+  
+  /* Primary: deep-twilight */
+  --primary: #4d3ef4;
+  --primary-foreground: #e9e7fe;
+  
+  /* Secondary: olive-wood light */
+  --secondary: #eae8e1;
+  --secondary-foreground: #3d3829;
+  
+  /* Muted: olive-wood */
+  --muted: #d6d1c2;
+  --muted-foreground: #5b543e;
+  
+  /* Accent: honey-bronze */
+  --accent: #fe9001;
+  --accent-foreground: #241400;
+  
+  /* Destructive: strawberry-red */
+  --destructive: #f60929;
+  --destructive-foreground: #fee6ea;
+  
+  /* Border/Input from olive-wood */
+  --border: #d6d1c2;
+  --input: #eae8e1;
+  --ring: #4d3ef4;
+  
+  /* Charts using full palette */
+  --chart-1: #4d3ef4;
+  --chart-2: #fe9001;
+  --chart-3: #f40b70;
+  --chart-4: #988c67;
+  --chart-5: #f60929;
+  
+  --radius: 0.75rem;
+  
+  /* Sidebar */
+  --sidebar: #f5f4f0;
+  --sidebar-foreground: #1e1c15;
+  --sidebar-primary: #4d3ef4;
+  --sidebar-primary-foreground: #e9e7fe;
+  --sidebar-accent: #eae8e1;
+  --sidebar-accent-foreground: #3d3829;
+  --sidebar-border: #d6d1c2;
+  --sidebar-ring: #4d3ef4;
+
+  /* Custom Playkits tokens - New palette */
+  --deep-twilight: #4d3ef4;
+  --deep-twilight-light: #a69ff9;
+  --deep-twilight-dark: #210ef1;
+  --honey-bronze: #fe9001;
+  --honey-bronze-light: #fed39a;
+  --honey-bronze-dark: #cb7301;
+  --olive-wood: #988c67;
+  --olive-wood-light: #d6d1c2;
+  --olive-wood-dark: #5b543e;
+  --strawberry-red: #f60929;
+  --strawberry-red-light: #fb9da9;
+  --rosewood: #f40b70;
+  --rosewood-light: #fa9ec6;
+  --rosewood-dark: #c3095a;
+  
+  /* Legacy aliases for backwards compatibility */
+  --coral: #f40b70;
+  --coral-foreground: #ffffff;
+  --warm-yellow: #fed39a;
+  --warm-yellow-foreground: #241400;
+  --soft-purple: #e9e7fe;
+  --soft-blue: #d6d1c2;
+}
+
+.dark {
+  /* Dark mode with deep-twilight as base */
+  --background: #070330;
+  --foreground: #eae8e1;
+  --card: #0d0660;
+  --card-foreground: #eae8e1;
+  --popover: #0d0660;
+  --popover-foreground: #eae8e1;
+  
+  /* Primary: deep-twilight lighter for dark mode */
+  --primary: #7a6ef7;
+  --primary-foreground: #050222;
+  
+  /* Secondary */
+  --secondary: #140891;
+  --secondary-foreground: #d6d1c2;
+  
+  /* Muted */
+  --muted: #1a0bc1;
+  --muted-foreground: #c1baa4;
+  
+  /* Accent: honey-bronze */
+  --accent: #fea634;
+  --accent-foreground: #241400;
+  
+  /* Destructive: strawberry-red */
+  --destructive: #f83a53;
+  --destructive-foreground: #220106;
+  
+  /* Border/Input */
+  --border: #210ef1;
+  --input: #140891;
+  --ring: #7a6ef7;
+  
+  /* Charts */
+  --chart-1: #7a6ef7;
+  --chart-2: #fea634;
+  --chart-3: #f63c8d;
+  --chart-4: #aca386;
+  --chart-5: #f83a53;
+  
+  /* Sidebar */
+  --sidebar: #0d0660;
+  --sidebar-foreground: #eae8e1;
+  --sidebar-primary: #7a6ef7;
+  --sidebar-primary-foreground: #eae8e1;
+  --sidebar-accent: #140891;
+  --sidebar-accent-foreground: #d6d1c2;
+  --sidebar-border: #210ef1;
+  --sidebar-ring: #7a6ef7;
+
+  /* Custom Playkits tokens - Dark mode */
+  --deep-twilight: #7a6ef7;
+  --deep-twilight-light: #a69ff9;
+  --deep-twilight-dark: #4d3ef4;
+  --honey-bronze: #fea634;
+  --honey-bronze-light: #febd67;
+  --honey-bronze-dark: #fe9001;
+  --olive-wood: #aca386;
+  --olive-wood-light: #c1baa4;
+  --olive-wood-dark: #797053;
+  --strawberry-red: #f83a53;
+  --strawberry-red-light: #fa6b7e;
+  --rosewood: #f63c8d;
+  --rosewood-light: #f86da9;
+  --rosewood-dark: #f40b70;
+  
+  /* Legacy aliases */
+  --coral: #f63c8d;
+  --coral-foreground: #050222;
+  --warm-yellow: #febd67;
+  --warm-yellow-foreground: #241400;
+  --soft-purple: #140891;
+  --soft-blue: #1a0bc1;
+}
+
+@theme inline {
+  --font-sans: "DM Sans", "DM Sans Fallback", system-ui, sans-serif;
+  --font-serif: "Playfair Display", "Playfair Display Fallback", serif;
+  --font-mono: "Geist Mono", "Geist Mono Fallback", monospace;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 16px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  
+  /* New Playkits palette tokens */
+  --color-deep-twilight: var(--deep-twilight);
+  --color-deep-twilight-light: var(--deep-twilight-light);
+  --color-deep-twilight-dark: var(--deep-twilight-dark);
+  --color-honey-bronze: var(--honey-bronze);
+  --color-honey-bronze-light: var(--honey-bronze-light);
+  --color-honey-bronze-dark: var(--honey-bronze-dark);
+  --color-olive-wood: var(--olive-wood);
+  --color-olive-wood-light: var(--olive-wood-light);
+  --color-olive-wood-dark: var(--olive-wood-dark);
+  --color-strawberry-red: var(--strawberry-red);
+  --color-strawberry-red-light: var(--strawberry-red-light);
+  --color-rosewood: var(--rosewood);
+  --color-rosewood-light: var(--rosewood-light);
+  --color-rosewood-dark: var(--rosewood-dark);
+  
+  /* Legacy aliases for backwards compatibility */
+  --color-coral: var(--coral);
+  --color-coral-foreground: var(--coral-foreground);
+  --color-warm-yellow: var(--warm-yellow);
+  --color-warm-yellow-foreground: var(--warm-yellow-foreground);
+  --color-soft-purple: var(--soft-purple);
+  --color-soft-blue: var(--soft-blue);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Custom animations */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+}
+
+@keyframes blob {
+  0%,
+  100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+  50% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-blob {
+  animation: blob 7s ease-in-out infinite;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
