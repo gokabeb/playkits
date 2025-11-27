@@ -4,9 +4,3 @@ dist/
 out/
 .vercel/
 .env*
-node_modules/
-.next/
-dist/
-out/
-.vercel/
-.env*
