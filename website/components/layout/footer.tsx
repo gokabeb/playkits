@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Heart, Mail, MapPin, Twitter, Linkedin, Instagram } from "lucide-react"
+import { Heart, Mail, MapPin, Instagram } from "lucide-react"
 
 const footerLinks = {
   "Our Work": [
@@ -20,9 +20,7 @@ const footerLinks = {
 }
 
 const socialLinks = [
-  { icon: Twitter, href: "#", label: "Twitter" },
-  { icon: Linkedin, href: "#", label: "LinkedIn" },
-  { icon: Instagram, href: "#", label: "Instagram" },
+  { icon: Instagram, href: "https://instagram.com/playkitsorg", label: "Instagram" },
 ]
 
 export function Footer() {
@@ -52,13 +50,16 @@ export function Footer() {
               <Heart className="h-4 w-4 text-rosewood" />
               <span>100% volunteer-run. 100% of donations go directly to playkits.</span>
             </div>
+            <p className="mt-4 text-xs text-muted-foreground/70 leading-relaxed max-w-sm">
+              Playkits.org is a registered 501(c)(3) nonprofit organization. Donations are tax-deductible to the full extent of the law.
+            </p>
 
             {/* Contact Info */}
             <div className="mt-6 space-y-2">
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 <Mail className="h-4 w-4" />
-                <a href="mailto:hello@playkits.org" className="hover:text-foreground">
-                  hello@playkits.org
+                <a href="mailto:kgupta1219@gmail.com" className="hover:text-foreground">
+                  kgupta1219@gmail.com
                 </a>
               </div>
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
