@@ -224,8 +224,8 @@ export default function ContactPage() {
                         </div>
                         <div>
                           <p className="font-medium text-foreground">Email</p>
-                          <a href="mailto:hello@playkits.org" className="text-sm text-muted-foreground hover:text-rosewood transition-colors">
-                            hello@playkits.org
+                          <a href="mailto:kgupta1219@gmail.com" className="text-sm text-muted-foreground hover:text-rosewood transition-colors">
+                            kgupta1219@gmail.com
                           </a>
                         </div>
                       </div>
