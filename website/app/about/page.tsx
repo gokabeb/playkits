@@ -113,6 +113,14 @@ export default function AboutPage() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
               >
+                {/* Hero photo */}
+                <div className="mb-6 overflow-hidden rounded-3xl" style={{ aspectRatio: "16/9" }}>
+                  <img
+                    src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1200&q=80&auto=format&fit=crop"
+                    alt="Children laughing and playing together"
+                    className="h-full w-full object-cover"
+                  />
+                </div>
                 <div 
                   className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-deep-twilight-light/20 via-deep-twilight-light/10 to-transparent p-1"
                   style={{ boxShadow: "0 25px 50px -12px rgba(77, 62, 244, 0.15)" }}
