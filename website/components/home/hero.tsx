@@ -111,6 +111,7 @@ export function Hero() {
                 { label: "Evidence-based", sublabel: "Grounded in neuroscience" },
                 { label: "Partner-driven", sublabel: "Scaling through networks" },
                 { label: "Transparent", sublabel: "100% to programs" },
+                { label: "501(c)(3) Registered", sublabel: "Tax-deductible donations" },
               ].map((item) => (
                 <div key={item.label}>
                   <p className="text-sm font-medium text-foreground">{item.label}</p>
