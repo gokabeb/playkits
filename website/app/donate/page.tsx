@@ -243,7 +243,7 @@ export default function DonatePage() {
               </div>
               
               <p className="text-center text-sm text-muted-foreground mt-6">
-                Your donation is secure and tax-deductible. You'll receive a receipt immediately after donating.
+                Playkits.org is a registered 501(c)(3) nonprofit. Donations are tax-deductible to the full extent of the law. You'll receive a receipt immediately after donating.
               </p>
             </div>
           </FadeIn>
