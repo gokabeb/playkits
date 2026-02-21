@@ -114,7 +114,7 @@ export default function AboutPage() {
                 transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
               >
                 {/* Hero photo */}
-                <div className="mb-6 overflow-hidden rounded-3xl" style={{ aspectRatio: "16/9" }}>
+                <div className="mb-6 aspect-video overflow-hidden rounded-3xl">
                   <img
                     src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1200&q=80&auto=format&fit=crop"
                     alt="Children laughing and playing together"
