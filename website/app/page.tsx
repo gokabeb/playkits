@@ -2,6 +2,7 @@ import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
 import { Hero } from "@/components/home/hero"
 import { ValueProps } from "@/components/home/value-props"
+import { ByTheNumbers } from "@/components/home/by-the-numbers"
 import { StoryPreview } from "@/components/home/story-preview"
 import { HowItWorks } from "@/components/home/how-it-works"
 import { KitTeaser } from "@/components/home/kit-teaser"
@@ -15,6 +16,7 @@ export default function HomePage() {
       <main>
         <Hero />
         <ValueProps />
+        <ByTheNumbers />
         <StoryPreview />
         <HowItWorks />
         <KitTeaser />
