@@ -130,7 +130,7 @@ export function Hero() {
               {/* Main image placeholder */}
               <div className="absolute inset-0 overflow-hidden rounded-3xl bg-deep-twilight-light/30">
                 <img
-                  src="/children-playing-together-with-colorful-toys-in-wa.jpg"
+                  src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=1200&q=80&auto=format&fit=crop"
                   alt="Children engaged in therapeutic play"
                   className="h-full w-full object-cover"
                 />
