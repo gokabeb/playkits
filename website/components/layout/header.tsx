@@ -55,7 +55,15 @@ export function Header() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
   const menuRef = useRef<HTMLDivElement>(null)
   const prefersReducedMotion = useReducedMotion()
-  
+
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20)
+    window.addEventListener("scroll", handleScroll, { passive: true })
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
   const animationDuration = 0.5
   const staggerDelay = 0.08
 
@@ -127,7 +135,11 @@ export function Header() {
   }
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 p-4 lg:p-6">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 p-4 lg:p-6 transition-all duration-300 ${
+        scrolled ? "bg-background/80 backdrop-blur-md shadow-sm border-b border-border/40" : ""
+      }`}
+    >
       <div className="mx-auto flex max-w-7xl items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3">
