@@ -6,39 +6,89 @@ import { motion, AnimatePresence, useReducedMotion, PanInfo } from "framer-motio
 import { Anchor, Users, GraduationCap, Globe, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
-const kits = [
+// Static color map — avoids dynamic template literal class generation which breaks Tailwind JIT
+const colorMap = {
+  forest: {
+    bg: "bg-forest/10",
+    text: "text-forest",
+    border: "border-forest/30",
+    gradient: "from-forest/20 via-forest/10 to-transparent",
+    glow: "rgba(27, 58, 45, 0.25)",
+    activeBg: "bg-forest/10 ring-2 ring-forest/30",
+    dotActive: "bg-forest",
+    accentLine: "bg-forest",
+  },
+  terracotta: {
+    bg: "bg-terracotta/10",
+    text: "text-terracotta",
+    border: "border-terracotta/30",
+    gradient: "from-terracotta/20 via-terracotta/10 to-transparent",
+    glow: "rgba(194, 96, 63, 0.25)",
+    activeBg: "bg-terracotta/10 ring-2 ring-terracotta/30",
+    dotActive: "bg-terracotta",
+    accentLine: "bg-terracotta",
+  },
+  gold: {
+    bg: "bg-gold/10",
+    text: "text-gold",
+    border: "border-gold/30",
+    gradient: "from-gold/20 via-gold/10 to-transparent",
+    glow: "rgba(212, 168, 67, 0.25)",
+    activeBg: "bg-gold/10 ring-2 ring-gold/30",
+    dotActive: "bg-gold",
+    accentLine: "bg-gold",
+  },
+  charcoal: {
+    bg: "bg-charcoal/10",
+    text: "text-charcoal-muted",
+    border: "border-charcoal/30",
+    gradient: "from-charcoal/15 via-charcoal/5 to-transparent",
+    glow: "rgba(26, 26, 26, 0.15)",
+    activeBg: "bg-charcoal/10 ring-2 ring-charcoal/30",
+    dotActive: "bg-charcoal-muted",
+    accentLine: "bg-charcoal-muted",
+  },
+} as const
+
+type ColorKey = keyof typeof colorMap
+
+const kits: Array<{
+  icon: React.ComponentType<{ className?: string }>
+  name: string
+  tagline: string
+  description: string
+  cost: string
+  costNote?: string
+  serves: string
+  colorKey: ColorKey
+}> = [
   {
     icon: Anchor,
     name: "The Anchor",
     tagline: "Personal healing journey",
     description: "A carefully curated collection of sensory tools, comfort objects, and guided activities designed to help one child process trauma at their own pace. Each kit becomes a personal sanctuary of safety.",
-    cost: "$18",
+    cost: "$15",
     serves: "1 child",
-    gradient: "from-deep-twilight/20 via-deep-twilight-light/10 to-transparent",
-    accentColor: "deep-twilight",
-    glowColor: "rgba(77, 62, 244, 0.3)",
+    colorKey: "forest",
   },
   {
     icon: Users,
     name: "The Circle",
     tagline: "Healing through community",
     description: "Group activities and cooperative games that bring children together, fostering connection and shared resilience. Perfect for shelters and community centers where collective healing happens.",
-    cost: "$85",
+    cost: "$70",
     serves: "15-20 children",
-    gradient: "from-rosewood/20 via-rosewood-light/10 to-transparent",
-    accentColor: "rosewood",
-    glowColor: "rgba(244, 11, 112, 0.3)",
+    colorKey: "terracotta",
   },
   {
     icon: GraduationCap,
     name: "The Facilitator",
     tagline: "Empowering caregivers",
     description: "Comprehensive training materials, activity guides, and trauma-informed resources that equip staff to facilitate play-based healing with confidence and compassion.",
-    cost: "$55",
+    cost: "$65",
+    costNote: "one-time · optional",
     serves: "Staff training",
-    gradient: "from-honey-bronze/20 via-honey-bronze-light/10 to-transparent",
-    accentColor: "honey-bronze",
-    glowColor: "rgba(254, 144, 1, 0.3)",
+    colorKey: "gold",
   },
   {
     icon: Globe,
@@ -47,9 +97,7 @@ const kits = [
     description: "Culturally-sensitive kits designed specifically for displaced children, featuring universal games and comfort items that transcend language barriers and create moments of joy.",
     cost: "$12",
     serves: "1 child",
-    gradient: "from-olive-wood/20 via-olive-wood-light/10 to-transparent",
-    accentColor: "olive-wood",
-    glowColor: "rgba(152, 140, 103, 0.4)",
+    colorKey: "charcoal",
   },
 ]
 
@@ -80,7 +128,6 @@ export function KitTeaser({ isStandalone = false }: KitTeaserProps) {
     }
   }
 
-  // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "ArrowLeft") navigate(activeIndex - 1)
@@ -91,6 +138,7 @@ export function KitTeaser({ isStandalone = false }: KitTeaserProps) {
   }, [activeIndex])
 
   const activeKit = kits[activeIndex]
+  const colors = colorMap[activeKit.colorKey]
 
   const cardVariants = {
     enter: (direction: number) => ({
@@ -104,50 +152,30 @@ export function KitTeaser({ isStandalone = false }: KitTeaserProps) {
       opacity: 1,
       scale: 1,
       rotateY: 0,
-      transition: {
-        duration: 0.5,
-        ease: [0.22, 1, 0.36, 1],
-      },
+      transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
     },
     exit: (direction: number) => ({
       x: direction < 0 ? 300 : -300,
       opacity: 0,
       scale: 0.8,
       rotateY: direction < 0 ? 15 : -15,
-      transition: {
-        duration: 0.5,
-        ease: [0.22, 1, 0.36, 1],
-      },
+      transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
     }),
   }
 
   return (
-    <section className={`relative overflow-hidden bg-gradient-to-b from-background via-deep-twilight-light/10 to-background ${isStandalone ? 'pt-28 pb-20 lg:pt-36 lg:pb-28' : 'py-24 lg:py-32'}`}>
+    <section className={`relative overflow-hidden bg-gradient-to-b from-background via-forest/5 to-background ${isStandalone ? 'pt-28 pb-20 lg:pt-36 lg:pb-28' : 'py-24 lg:py-32'}`}>
       {/* Animated background accents */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <motion.div
-          className="absolute -left-32 top-1/4 h-96 w-96 rounded-full bg-deep-twilight/5 blur-3xl"
-          animate={{
-            x: [0, 30, 0],
-            y: [0, -20, 0],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
+          className="absolute -left-32 top-1/4 h-96 w-96 rounded-full bg-forest/5 blur-3xl"
+          animate={{ x: [0, 30, 0], y: [0, -20, 0] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div
-          className="absolute -right-32 bottom-1/4 h-96 w-96 rounded-full bg-honey-bronze/5 blur-3xl"
-          animate={{
-            x: [0, -30, 0],
-            y: [0, 20, 0],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
+          className="absolute -right-32 bottom-1/4 h-96 w-96 rounded-full bg-terracotta/5 blur-3xl"
+          animate={{ x: [0, -30, 0], y: [0, 20, 0] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
         />
       </div>
 
@@ -170,11 +198,7 @@ export function KitTeaser({ isStandalone = false }: KitTeaserProps) {
         </motion.div>
 
         {/* Carousel container */}
-        <div
-          ref={containerRef}
-          className="relative mx-auto max-w-4xl"
-          style={{ perspective: "1200px" }}
-        >
+        <div ref={containerRef} className="relative mx-auto max-w-4xl" style={{ perspective: "1200px" }}>
           {/* Navigation arrows */}
           <div className="absolute -left-4 top-1/2 z-20 -translate-y-1/2 lg:-left-16">
             <motion.button
@@ -217,15 +241,13 @@ export function KitTeaser({ isStandalone = false }: KitTeaserProps) {
               style={{ transformStyle: "preserve-3d" }}
             >
               <div
-                className={`relative overflow-hidden rounded-3xl bg-gradient-to-br ${activeKit.gradient} p-1`}
-                style={{
-                  boxShadow: `0 25px 50px -12px ${activeKit.glowColor}`,
-                }}
+                className={`relative overflow-hidden rounded-3xl bg-gradient-to-br ${colors.gradient} p-1`}
+                style={{ boxShadow: `0 25px 50px -12px ${colors.glow}` }}
               >
                 <div className="relative rounded-[22px] bg-card/95 backdrop-blur-xl p-8 lg:p-12">
                   {/* Animated accent line */}
                   <motion.div
-                    className={`absolute left-0 top-0 h-1 bg-${activeKit.accentColor}`}
+                    className={`absolute left-0 top-0 h-1 ${colors.accentLine}`}
                     initial={{ width: 0 }}
                     animate={{ width: "100%" }}
                     transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
@@ -235,28 +257,19 @@ export function KitTeaser({ isStandalone = false }: KitTeaserProps) {
                     {/* Left: Icon and visual */}
                     <div className="flex flex-col items-center justify-center">
                       <motion.div
-                        className={`relative flex h-32 w-32 items-center justify-center rounded-3xl bg-gradient-to-br ${activeKit.gradient}`}
+                        className={`relative flex h-32 w-32 items-center justify-center rounded-3xl bg-gradient-to-br ${colors.gradient}`}
                         initial={{ scale: 0.5, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
                         transition={{ delay: 0.2, duration: 0.5, type: "spring" }}
                       >
-                        {/* Animated rings */}
                         <motion.div
-                          className={`absolute inset-0 rounded-3xl border-2 border-${activeKit.accentColor}/30`}
-                          animate={{
-                            scale: [1, 1.2, 1],
-                            opacity: [0.5, 0, 0.5],
-                          }}
-                          transition={{
-                            duration: 2,
-                            repeat: Infinity,
-                            ease: "easeInOut",
-                          }}
+                          className={`absolute inset-0 rounded-3xl border-2 ${colors.border}`}
+                          animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0, 0.5] }}
+                          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                         />
-                        <activeKit.icon className={`h-16 w-16 text-${activeKit.accentColor}`} />
+                        <activeKit.icon className={`h-16 w-16 ${colors.text}`} />
                       </motion.div>
 
-                      {/* Price tag */}
                       <motion.div
                         className="mt-8 text-center"
                         initial={{ opacity: 0, y: 20 }}
@@ -265,6 +278,9 @@ export function KitTeaser({ isStandalone = false }: KitTeaserProps) {
                       >
                         <span className="font-serif text-5xl font-medium text-foreground">{activeKit.cost}</span>
                         <span className="ml-2 text-sm text-muted-foreground">/ kit</span>
+                        {activeKit.costNote && (
+                          <p className="mt-1 text-xs font-medium uppercase tracking-wider text-gold">{activeKit.costNote}</p>
+                        )}
                         <p className="mt-2 text-sm text-muted-foreground">Serves {activeKit.serves}</p>
                       </motion.div>
                     </div>
@@ -272,7 +288,7 @@ export function KitTeaser({ isStandalone = false }: KitTeaserProps) {
                     {/* Right: Content */}
                     <div className="flex flex-col justify-center">
                       <motion.p
-                        className={`text-sm font-medium uppercase tracking-wider text-${activeKit.accentColor}`}
+                        className={`text-sm font-medium uppercase tracking-wider ${colors.text}`}
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.2 }}
@@ -304,7 +320,7 @@ export function KitTeaser({ isStandalone = false }: KitTeaserProps) {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.4 }}
                       >
-                        <Button asChild className="rounded-full">
+                        <Button asChild className="rounded-full bg-forest text-cream hover:bg-forest-dark">
                           <Link href="/playkits">
                             Learn more
                             <ArrowRight className="ml-2 h-4 w-4" />
@@ -320,33 +336,27 @@ export function KitTeaser({ isStandalone = false }: KitTeaserProps) {
 
           {/* Navigation dots */}
           <div className="mt-10 flex justify-center gap-3">
-            {kits.map((kit, index) => (
-              <motion.button
-                key={kit.name}
-                onClick={() => navigate(index)}
-                className={`relative h-3 overflow-hidden rounded-full transition-all duration-300 ${
-                  index === activeIndex ? "w-10" : "w-3"
-                }`}
-                whileHover={{ scale: 1.2 }}
-                whileTap={{ scale: 0.9 }}
-                aria-label={`Go to ${kit.name}`}
-              >
-                <span
-                  className={`absolute inset-0 rounded-full transition-colors duration-300 ${
-                    index === activeIndex
-                      ? `bg-${kit.accentColor}`
-                      : "bg-muted-foreground/30"
+            {kits.map((kit, index) => {
+              const c = colorMap[kit.colorKey]
+              return (
+                <motion.button
+                  key={kit.name}
+                  onClick={() => navigate(index)}
+                  className={`relative h-3 overflow-hidden rounded-full transition-all duration-300 ${
+                    index === activeIndex ? "w-10" : "w-3"
                   }`}
-                />
-                {index === activeIndex && (
-                  <motion.span
-                    className={`absolute inset-0 rounded-full bg-${kit.accentColor}`}
-                    layoutId="activeDot"
-                    transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                  whileHover={{ scale: 1.2 }}
+                  whileTap={{ scale: 0.9 }}
+                  aria-label={`Go to ${kit.name}`}
+                >
+                  <span
+                    className={`absolute inset-0 rounded-full transition-colors duration-300 ${
+                      index === activeIndex ? c.dotActive : "bg-muted-foreground/30"
+                    }`}
                   />
-                )}
-              </motion.button>
-            ))}
+                </motion.button>
+              )
+            })}
           </div>
 
           {/* Kit preview thumbnails */}
@@ -357,34 +367,33 @@ export function KitTeaser({ isStandalone = false }: KitTeaserProps) {
             viewport={{ once: true }}
             transition={{ delay: 0.5 }}
           >
-            {kits.map((kit, index) => (
-              <motion.button
-                key={kit.name}
-                onClick={() => navigate(index)}
-                className={`group relative flex items-center gap-3 rounded-2xl px-4 py-3 transition-all duration-300 ${
-                  index === activeIndex
-                    ? `bg-${kit.accentColor}/10 ring-2 ring-${kit.accentColor}/30`
-                    : "bg-muted/50 hover:bg-muted"
-                }`}
-                whileHover={{ y: -2 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <kit.icon
-                  className={`h-5 w-5 transition-colors ${
-                    index === activeIndex
-                      ? `text-${kit.accentColor}`
-                      : "text-muted-foreground group-hover:text-foreground"
+            {kits.map((kit, index) => {
+              const c = colorMap[kit.colorKey]
+              return (
+                <motion.button
+                  key={kit.name}
+                  onClick={() => navigate(index)}
+                  className={`group relative flex items-center gap-3 rounded-2xl px-4 py-3 transition-all duration-300 ${
+                    index === activeIndex ? c.activeBg : "bg-muted/50 hover:bg-muted"
                   }`}
-                />
-                <span
-                  className={`text-sm font-medium transition-colors ${
-                    index === activeIndex ? "text-foreground" : "text-muted-foreground group-hover:text-foreground"
-                  }`}
+                  whileHover={{ y: -2 }}
+                  whileTap={{ scale: 0.98 }}
                 >
-                  {kit.name}
-                </span>
-              </motion.button>
-            ))}
+                  <kit.icon
+                    className={`h-5 w-5 transition-colors ${
+                      index === activeIndex ? c.text : "text-muted-foreground group-hover:text-foreground"
+                    }`}
+                  />
+                  <span
+                    className={`text-sm font-medium transition-colors ${
+                      index === activeIndex ? "text-foreground" : "text-muted-foreground group-hover:text-foreground"
+                    }`}
+                  >
+                    {kit.name}
+                  </span>
+                </motion.button>
+              )
+            })}
           </motion.div>
         </div>
 
@@ -396,7 +405,7 @@ export function KitTeaser({ isStandalone = false }: KitTeaserProps) {
           viewport={{ once: true }}
           transition={{ delay: 0.6 }}
         >
-          <Button asChild variant="outline" className="rounded-full bg-transparent">
+          <Button asChild variant="outline" className="rounded-full bg-transparent border-forest/30 text-forest hover:bg-forest/5">
             <Link href="/playkits">
               View all playkits
               <ArrowRight className="ml-2 h-4 w-4" />
