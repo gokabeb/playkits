@@ -2,32 +2,43 @@
 
 import { motion, useReducedMotion } from "framer-motion"
 import { CountUp } from "@/components/ui/count-up"
+import { impact } from "@/lib/impact"
 
 const stats = [
+  {
+    value: null,
+    countEnd: impact.kitsDelivered,
+    countSuffix: "+",
+    label: "playkits delivered",
+    sublabel: "Into the hands of children who need them",
+    color: "text-terracotta",
+    bg: "bg-terracotta/5",
+  },
+  {
+    value: null,
+    countEnd: impact.partnerOrgs,
+    countSuffix: "+",
+    label: "partner organizations",
+    sublabel: "Trusted organizations putting our kits to work",
+    color: "text-forest",
+    bg: "bg-forest/5",
+  },
   {
     value: null,
     countEnd: 100,
     countSuffix: "%",
     label: "of donations go to programs",
     sublabel: "Zero overhead. Zero salaries.",
-    color: "text-forest",
-    bg: "bg-forest/5",
+    color: "text-gold",
+    bg: "bg-gold/5",
   },
   {
     value: "501(c)(3)",
     countEnd: null,
     label: "registered nonprofit",
     sublabel: "Tax-deductible donations",
-    color: "text-terracotta",
-    bg: "bg-terracotta/5",
-  },
-  {
-    value: "Partner-driven",
-    countEnd: null,
-    label: "scaling model",
-    sublabel: "Reaching more children through trusted orgs",
-    color: "text-gold",
-    bg: "bg-gold/5",
+    color: "text-forest",
+    bg: "bg-forest/5",
   },
 ]
 
@@ -49,7 +60,7 @@ export function ByTheNumbers() {
           </span>
         </motion.div>
 
-        <div className="grid gap-6 sm:grid-cols-3">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {stats.map((stat, index) => (
             <motion.div
               key={stat.label}
@@ -63,7 +74,7 @@ export function ByTheNumbers() {
                 ease: [0.22, 1, 0.36, 1],
               }}
             >
-              <p className={`font-serif text-4xl font-medium lg:text-5xl ${stat.color}`}>
+              <p className={`whitespace-nowrap font-serif text-4xl font-medium xl:text-5xl ${stat.color}`}>
                 {stat.countEnd !== null ? (
                   <CountUp end={stat.countEnd} suffix={stat.countSuffix ?? ""} />
                 ) : (

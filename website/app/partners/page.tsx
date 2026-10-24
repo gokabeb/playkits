@@ -18,6 +18,7 @@ import {
   Heart,
 } from "lucide-react"
 import Link from "next/link"
+import { impact } from "@/lib/impact"
 
 const partnerTypes = [
   {
@@ -145,6 +146,13 @@ export default function PartnersPage() {
                   className="mx-auto mt-6 max-w-xl text-lg text-muted-foreground"
                 >
                   Evidence-based tools and training for your organization.
+                </motion.p>
+
+                <motion.p
+                  variants={itemVariants}
+                  className="mt-4 font-mono text-xs uppercase tracking-[0.2em] text-forest"
+                >
+                  Join {impact.partnerOrgs}+ organizations · {impact.kitsDelivered}+ kits delivered
                 </motion.p>
 
                 <motion.div variants={itemVariants} className="mt-10">

@@ -5,6 +5,8 @@ import { motion, useReducedMotion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { FloatingParticles } from "@/components/ui/floating-particles"
 import { ArrowRight } from "lucide-react"
+import { CountUp } from "@/components/ui/count-up"
+import { impact } from "@/lib/impact"
 
 export function Hero() {
   const prefersReducedMotion = useReducedMotion()
@@ -140,9 +142,13 @@ export function Hero() {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{ delay: 0.9, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               >
-                <p className="font-mono text-xs uppercase tracking-wider text-cream/60">Impact model</p>
-                <p className="mt-1 font-serif text-3xl font-medium text-gold">100%</p>
-                <p className="text-sm text-cream/70">to playkits, not overhead</p>
+                <p className="font-mono text-xs uppercase tracking-wider text-cream/60">Impact so far</p>
+                <p className="mt-1 font-serif text-3xl font-medium text-gold">
+                  <CountUp end={impact.kitsDelivered} suffix="+" />
+                </p>
+                <p className="text-sm text-cream/70">
+                  kits delivered with {impact.partnerOrgs}+ partner orgs
+                </p>
               </motion.div>
 
               {/* Decorative shape */}
