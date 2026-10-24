@@ -24,28 +24,28 @@ const partnerTypes = [
     icon: School,
     name: "Schools",
     description: "Trauma-informed play in classrooms",
-    color: "deep-twilight",
+    color: "forest",
     glowColor: "rgba(77, 62, 244, 0.15)",
   },
   {
     icon: Home,
     name: "Foster Care",
     description: "Tools for children in transition",
-    color: "rosewood",
+    color: "terracotta",
     glowColor: "rgba(244, 11, 112, 0.12)",
   },
   {
     icon: Building2,
     name: "Shelters",
     description: "Regulation tools in crisis",
-    color: "honey-bronze",
+    color: "gold",
     glowColor: "rgba(254, 144, 1, 0.15)",
   },
   {
     icon: Globe,
     name: "Humanitarian",
     description: "Culturally-sensitive kits",
-    color: "olive-wood",
+    color: "charcoal-muted",
     glowColor: "rgba(152, 140, 103, 0.15)",
   },
 ]
@@ -105,8 +105,8 @@ export default function PartnersPage() {
       <main>
         {/* Hero */}
         <section className="relative min-h-screen overflow-hidden bg-background pt-24">
-          <div className="absolute inset-0 bg-gradient-to-b from-deep-twilight-light/15 to-transparent" />
-          
+          <div className="absolute inset-0 bg-gradient-to-b from-forest/10 to-transparent" />
+
           <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
             <div className="flex min-h-[calc(100vh-6rem)] flex-col items-center justify-center py-12 text-center">
               <motion.div
@@ -115,7 +115,7 @@ export default function PartnersPage() {
                 animate="visible"
                 className="max-w-3xl"
               >
-                <motion.span 
+                <motion.span
                   variants={itemVariants}
                   className="mb-6 inline-block font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground"
                 >
@@ -129,9 +129,9 @@ export default function PartnersPage() {
                   Bring healing
                   <br />
                   <span className="relative inline-block">
-                    <span className="relative z-10 text-deep-twilight">through play</span>
+                    <span className="relative z-10 text-terracotta">through play</span>
                     <motion.span
-                      className="absolute -bottom-1 left-0 right-0 h-3 bg-deep-twilight-light/40 -z-0"
+                      className="absolute -bottom-1 left-0 right-0 h-3 bg-gold/40 -z-0"
                       initial={{ scaleX: 0 }}
                       animate={{ scaleX: 1 }}
                       transition={{ delay: 0.6, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
@@ -140,7 +140,7 @@ export default function PartnersPage() {
                   </span>
                 </motion.h1>
 
-                <motion.p 
+                <motion.p
                   variants={itemVariants}
                   className="mx-auto mt-6 max-w-xl text-lg text-muted-foreground"
                 >
@@ -197,11 +197,11 @@ export default function PartnersPage() {
                         transition: { duration: 0.6 },
                       }}
                     />
-                    
+
                     <div className={`relative mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-${type.color}/10 text-${type.color} transition-transform group-hover:scale-110`}>
                       <type.icon className="h-7 w-7" />
                     </div>
-                    
+
                     <h3 className="font-serif text-xl font-medium text-foreground">{type.name}</h3>
                     <p className="mt-2 text-sm text-muted-foreground">{type.description}</p>
                   </div>
@@ -212,7 +212,7 @@ export default function PartnersPage() {
         </section>
 
         {/* Process - Horizontal Timeline */}
-        <section className="bg-gradient-to-r from-olive-wood-light/20 via-background to-olive-wood-light/20 py-24">
+        <section className="bg-gradient-to-r from-gold/5 via-cream to-gold/5 py-24">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <motion.div
               className="mb-16 text-center"
@@ -241,9 +241,9 @@ export default function PartnersPage() {
                     transition={{ delay: index * 0.15 }}
                   >
                     <div className="relative z-10 mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-card shadow-lg ring-4 ring-background">
-                      <step.icon className="h-7 w-7 text-deep-twilight" />
+                      <step.icon className="h-7 w-7 text-forest" />
                     </div>
-                    <span className="font-mono text-xs font-bold uppercase tracking-wider text-deep-twilight">
+                    <span className="font-mono text-xs font-bold uppercase tracking-wider text-gold">
                       Step {step.step}
                     </span>
                     <h3 className="mt-2 font-serif text-lg font-medium text-foreground">{step.title}</h3>
@@ -259,19 +259,19 @@ export default function PartnersPage() {
         <section className="py-24 lg:py-32">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <motion.div
-              className="relative mx-auto max-w-3xl overflow-hidden rounded-3xl bg-gradient-to-br from-rosewood/20 via-rosewood/10 to-transparent p-1"
+              className="relative mx-auto max-w-3xl overflow-hidden rounded-3xl bg-gradient-to-br from-terracotta/20 via-terracotta/10 to-transparent p-1"
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              style={{ boxShadow: "0 25px 50px -12px rgba(244, 11, 112, 0.15)" }}
+              style={{ boxShadow: "0 25px 50px -12px rgba(194, 91, 61, 0.15)" }}
             >
               <div className="relative rounded-[22px] bg-card/95 backdrop-blur-xl p-8 lg:p-12 text-center">
-                <Heart className="mx-auto mb-6 h-12 w-12 text-rosewood" />
-                
+                <Heart className="mx-auto mb-6 h-12 w-12 text-terracotta" />
+
                 <h3 className="font-serif text-2xl font-medium text-foreground lg:text-3xl">
                   Ready to get started?
                 </h3>
-                
+
                 <p className="mx-auto mt-4 max-w-lg text-muted-foreground">
                   Schedule a call to learn how we can support your organization.
                 </p>
@@ -287,7 +287,7 @@ export default function PartnersPage() {
 
                 {/* Decorative */}
                 <motion.div
-                  className="absolute -bottom-4 -right-4 h-24 w-24 rounded-2xl bg-rosewood/10"
+                  className="absolute -bottom-4 -right-4 h-24 w-24 rounded-2xl bg-terracotta/10"
                   initial={{ scale: 0, rotate: -12 }}
                   whileInView={{ scale: 1, rotate: 0 }}
                   viewport={{ once: true }}

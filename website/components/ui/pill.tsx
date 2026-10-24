@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils"
 
 interface PillProps {
   children: React.ReactNode
-  variant?: "default" | "primary" | "deep-twilight" | "honey-bronze" | "olive-wood" | "rosewood" | "coral" | "yellow"
+  variant?: "default" | "primary" | "forest" | "terracotta" | "gold" | "charcoal"
   className?: string
 }
 
@@ -15,13 +15,10 @@ export function Pill({ children, variant = "default", className }: PillProps) {
         {
           "bg-secondary text-secondary-foreground": variant === "default",
           "bg-primary/10 text-primary": variant === "primary",
-          "bg-deep-twilight/10 text-deep-twilight": variant === "deep-twilight",
-          "bg-honey-bronze/20 text-honey-bronze-dark": variant === "honey-bronze",
-          "bg-olive-wood-light/30 text-olive-wood-dark": variant === "olive-wood",
-          "bg-rosewood/10 text-rosewood": variant === "rosewood",
-          // Legacy variants for backwards compatibility
-          "bg-rosewood/20 text-rosewood": variant === "coral",
-          "bg-honey-bronze-light text-honey-bronze-dark": variant === "yellow",
+          "bg-forest/10 text-forest": variant === "forest",
+          "bg-terracotta/10 text-terracotta": variant === "terracotta",
+          "bg-gold/10 text-gold-dark": variant === "gold",
+          "bg-charcoal/10 text-charcoal-muted": variant === "charcoal",
         },
         className,
       )}

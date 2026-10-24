@@ -11,42 +11,42 @@ const menuItems = [
     href: "/",
     ariaLabel: "Go to home page",
     rotation: -6,
-    hoverStyles: { bgColor: "#4d3ef4", textColor: "#ffffff" },
+    hoverStyles: { bgColor: "#1B3A2D", textColor: "#F5EFE0" },
   },
   {
     label: "Playkits",
     href: "/playkits",
     ariaLabel: "View our playkits",
     rotation: 4,
-    hoverStyles: { bgColor: "#f40b70", textColor: "#ffffff" },
+    hoverStyles: { bgColor: "#C2603F", textColor: "#F5EFE0" },
   },
   {
     label: "Science",
     href: "/science",
     ariaLabel: "Learn about the science",
     rotation: -4,
-    hoverStyles: { bgColor: "#fe9001", textColor: "#ffffff" },
+    hoverStyles: { bgColor: "#2D5C47", textColor: "#F5EFE0" },
   },
   {
     label: "Partners",
     href: "/partners",
     ariaLabel: "Partner with us",
     rotation: 6,
-    hoverStyles: { bgColor: "#988c67", textColor: "#ffffff" },
+    hoverStyles: { bgColor: "#D4A843", textColor: "#1A1A1A" },
   },
   {
     label: "About",
     href: "/about",
     ariaLabel: "About Playkits",
     rotation: -5,
-    hoverStyles: { bgColor: "#7a6ef7", textColor: "#ffffff" },
+    hoverStyles: { bgColor: "#A04E32", textColor: "#F5EFE0" },
   },
   {
     label: "Contact",
     href: "/contact",
     ariaLabel: "Contact us",
     rotation: 5,
-    hoverStyles: { bgColor: "#f60929", textColor: "#ffffff" },
+    hoverStyles: { bgColor: "#0F2219", textColor: "#F5EFE0" },
   },
 ]
 
@@ -137,7 +137,7 @@ export function Header() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 p-4 lg:p-6 transition-all duration-300 ${
-        scrolled ? "bg-background/80 backdrop-blur-md shadow-sm border-b border-border/40" : ""
+        scrolled ? "bg-cream/80 backdrop-blur-md shadow-sm border-b border-forest/10" : ""
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between">
@@ -164,7 +164,7 @@ export function Header() {
           {/* Menu Toggle Button */}
           <motion.button
             onClick={() => setIsOpen(!isOpen)}
-            className="relative z-50 flex h-12 w-12 items-center justify-center rounded-full border border-border/50 bg-card/90 shadow-lg backdrop-blur-md transition-colors hover:bg-card"
+            className="relative z-50 flex h-12 w-12 items-center justify-center rounded-full border border-forest/20 bg-cream/90 shadow-lg backdrop-blur-md transition-colors hover:bg-cream"
             aria-label="Toggle navigation menu"
             aria-expanded={isOpen}
             whileHover={{ scale: 1.05 }}
@@ -199,7 +199,7 @@ export function Header() {
           <AnimatePresence>
             {isOpen && (
               <motion.div
-                className="absolute right-0 top-16 z-40 overflow-hidden rounded-3xl border border-border/50 bg-card/95 shadow-2xl backdrop-blur-xl"
+                className="absolute right-0 top-16 z-40 overflow-hidden rounded-3xl border border-forest/20 bg-cream/95 shadow-2xl backdrop-blur-xl"
                 variants={menuVariants}
                 initial="closed"
                 animate="open"
@@ -250,7 +250,7 @@ export function Header() {
                           className="relative block overflow-hidden rounded-full px-8 py-3 text-center text-base font-medium transition-colors duration-200"
                           style={{
                             backgroundColor: hoveredIndex === index ? item.hoverStyles.bgColor : "transparent",
-                            color: hoveredIndex === index ? item.hoverStyles.textColor : "#1e1c15",
+                            color: hoveredIndex === index ? item.hoverStyles.textColor : "#1A1A1A",
                           }}
                         >
                           <motion.span
@@ -280,7 +280,7 @@ export function Header() {
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={() => setIsOpen(false)}
-                        className="block w-full rounded-full bg-deep-twilight px-8 py-3.5 text-center text-base font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                        className="block w-full rounded-full bg-terracotta px-8 py-3.5 text-center text-base font-semibold text-cream transition-all duration-300 hover:bg-terracotta-dark hover:scale-105 hover:shadow-lg"
                       >
                         Donate Now
                       </a>

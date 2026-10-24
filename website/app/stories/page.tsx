@@ -76,7 +76,7 @@ export default function StoriesPage() {
       <Header />
       <main>
         {/* Hero */}
-        <Section className="bg-soft-purple/30">
+        <Section className="bg-background">
           <FadeIn>
             <div className="mx-auto max-w-3xl text-center">
               <Pill variant="primary" className="mb-4">
@@ -102,7 +102,7 @@ export default function StoriesPage() {
                   key={category}
                   className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
                     category === "All"
-                      ? "bg-primary text-primary-foreground"
+                      ? "bg-forest text-cream"
                       : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
                   }`}
                 >
@@ -146,11 +146,11 @@ export default function StoriesPage() {
                         })}
                       </span>
                     </div>
-                    <h2 className="mb-2 text-lg font-bold text-card-foreground group-hover:text-primary transition-colors">
+                    <h2 className="mb-2 text-lg font-bold text-card-foreground group-hover:text-terracotta transition-colors">
                       {story.title}
                     </h2>
                     <p className="flex-grow text-sm text-muted-foreground">{story.excerpt}</p>
-                    <Button variant="ghost" className="mt-4 self-start -ml-4 text-primary">
+                    <Button variant="ghost" className="mt-4 self-start -ml-4 text-forest">
                       Read more
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
@@ -169,7 +169,7 @@ export default function StoriesPage() {
         </Section>
 
         {/* Newsletter CTA */}
-        <Section className="bg-warm-yellow/20">
+        <Section className="bg-gold/10">
           <FadeIn>
             <div className="mx-auto max-w-2xl text-center">
               <h2 className="text-2xl font-bold text-foreground sm:text-3xl">Stay updated</h2>

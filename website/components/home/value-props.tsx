@@ -68,7 +68,7 @@ export function ValueProps() {
             {valueProps.map((prop, index) => (
               <motion.div
                 key={prop.title}
-                className="group relative bg-card p-8 transition-colors hover:bg-soft-purple/30 lg:p-10"
+                className="group relative bg-card p-8 transition-colors hover:bg-forest/5 lg:p-10"
                 variants={{
                   hidden: { opacity: 0, y: 30 },
                   visible: {
@@ -80,11 +80,11 @@ export function ValueProps() {
                 whileHover={prefersReducedMotion ? {} : { y: -4 }}
               >
                 {/* Number indicator */}
-                <span className="mb-6 block font-mono text-sm text-primary/60">{prop.number}</span>
+                <span className="mb-6 block font-mono text-sm text-gold">{prop.number}</span>
 
                 {/* Icon with hover effect */}
                 <motion.div
-                  className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/5 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground"
+                  className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-forest/5 text-forest transition-colors group-hover:bg-terracotta group-hover:text-cream"
                   whileHover={prefersReducedMotion ? {} : { scale: 1.05, rotate: -3 }}
                   transition={{ type: "spring", stiffness: 400, damping: 17 }}
                 >

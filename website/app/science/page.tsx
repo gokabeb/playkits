@@ -7,27 +7,29 @@ import { motion, useReducedMotion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Heart, Wind, Hand, Puzzle, FileText, ArrowRight, Brain } from "lucide-react"
 import Link from "next/link"
+import { BrainDiagram } from "@/components/science/brain-diagram"
+import { ToleranceWindow } from "@/components/science/tolerance-window"
 
 const brainLayers = [
   {
     name: "Survival",
     area: "Brainstem",
     description: "Fight/flight/freeze responses",
-    color: "strawberry-red",
+    color: "terracotta",
     glowColor: "rgba(246, 9, 41, 0.12)",
   },
   {
     name: "Feeling",
     area: "Limbic",
     description: "Emotions & attachment",
-    color: "rosewood",
+    color: "gold",
     glowColor: "rgba(244, 11, 112, 0.12)",
   },
   {
     name: "Thinking",
     area: "Cortex",
     description: "Reasoning & planning",
-    color: "deep-twilight",
+    color: "forest",
     glowColor: "rgba(77, 62, 244, 0.15)",
   },
 ]
@@ -38,7 +40,7 @@ const regulatoryLayers = [
     layer: "CALM",
     mechanism: "Vagal brake activation",
     tools: ["Bubbles", "Pinwheels"],
-    color: "deep-twilight",
+    color: "forest",
     glowColor: "rgba(77, 62, 244, 0.15)",
   },
   {
@@ -46,7 +48,7 @@ const regulatoryLayers = [
     layer: "GROUND",
     mechanism: "Proprioceptive input",
     tools: ["Therapy putty", "Clay"],
-    color: "olive-wood",
+    color: "gold",
     glowColor: "rgba(152, 140, 103, 0.15)",
   },
   {
@@ -54,7 +56,7 @@ const regulatoryLayers = [
     layer: "CONNECT",
     mechanism: "Safe emotional distance",
     tools: ["Puppets", "Plush objects"],
-    color: "rosewood",
+    color: "terracotta",
     glowColor: "rgba(244, 11, 112, 0.12)",
   },
   {
@@ -62,7 +64,7 @@ const regulatoryLayers = [
     layer: "THINK",
     mechanism: "Executive function",
     tools: ["Games", "Mandalas"],
-    color: "honey-bronze",
+    color: "gold",
     glowColor: "rgba(254, 144, 1, 0.15)",
   },
 ]
@@ -94,15 +96,15 @@ export default function SciencePage() {
       <Header />
       <main>
         {/* Hero */}
-        <section className="relative min-h-screen overflow-hidden bg-deep-twilight pt-24">
-          <div 
+        <section className="relative min-h-screen overflow-hidden bg-forest pt-24">
+          <div
             className="absolute inset-0 opacity-10"
             style={{
               backgroundImage: `radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
                                radial-gradient(circle at 80% 80%, rgba(255,255,255,0.05) 0%, transparent 40%)`,
             }}
           />
-          
+
           <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
             <div className="flex min-h-[calc(100vh-6rem)] flex-col items-center justify-center py-12 text-center">
               <motion.div
@@ -111,9 +113,9 @@ export default function SciencePage() {
                 animate="visible"
                 className="max-w-3xl"
               >
-                <motion.span 
+                <motion.span
                   variants={itemVariants}
-                  className="mb-6 inline-block font-mono text-xs uppercase tracking-[0.2em] text-deep-twilight-light"
+                  className="mb-6 inline-block font-mono text-xs uppercase tracking-[0.2em] text-gold"
                 >
                   Research
                 </motion.span>
@@ -127,7 +129,7 @@ export default function SciencePage() {
                   <span className="relative inline-block">
                     <span className="relative z-10">healing through play</span>
                     <motion.span
-                      className="absolute -bottom-1 left-0 right-0 h-3 bg-honey-bronze/40 -z-0"
+                      className="absolute -bottom-1 left-0 right-0 h-3 bg-gold/40 -z-0"
                       initial={{ scaleX: 0 }}
                       animate={{ scaleX: 1 }}
                       transition={{ delay: 0.6, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
@@ -136,7 +138,7 @@ export default function SciencePage() {
                   </span>
                 </motion.h1>
 
-                <motion.p 
+                <motion.p
                   variants={itemVariants}
                   className="mx-auto mt-6 max-w-xl text-lg text-white/70"
                 >
@@ -169,41 +171,44 @@ export default function SciencePage() {
                 </p>
               </motion.div>
 
-              {/* Brain layers cards */}
-              <div className="grid gap-4">
-                {brainLayers.map((layer, index) => (
-                  <motion.div
-                    key={layer.name}
-                    className={`relative overflow-hidden rounded-2xl bg-gradient-to-r from-${layer.color}/20 to-transparent p-1`}
-                    initial={{ opacity: 0, x: 30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    style={{ boxShadow: `0 10px 30px -10px ${layer.glowColor}` }}
-                  >
-                    <div className="flex items-center gap-4 rounded-xl bg-card/95 backdrop-blur-xl p-4">
-                      <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-${layer.color}/10`}>
-                        <Brain className={`h-6 w-6 text-${layer.color}`} />
-                      </div>
-                      <div>
-                        <div className="flex items-center gap-2">
-                          <h3 className="font-serif font-medium text-foreground">{layer.name} Brain</h3>
-                          <span className={`rounded-full bg-${layer.color}/10 px-2 py-0.5 text-xs text-${layer.color}`}>
-                            {layer.area}
-                          </span>
+              {/* Brain layers cards + diagram */}
+              <div className="flex flex-col gap-4">
+                <div className="grid gap-4">
+                  {brainLayers.map((layer, index) => (
+                    <motion.div
+                      key={layer.name}
+                      className={`relative overflow-hidden rounded-2xl bg-gradient-to-r from-${layer.color}/20 to-transparent p-1`}
+                      initial={{ opacity: 0, x: 30 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      style={{ boxShadow: `0 10px 30px -10px ${layer.glowColor}` }}
+                    >
+                      <div className="flex items-center gap-4 rounded-xl bg-card/95 backdrop-blur-xl p-4">
+                        <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-${layer.color}/10`}>
+                          <Brain className={`h-6 w-6 text-${layer.color}`} />
                         </div>
-                        <p className="text-sm text-muted-foreground">{layer.description}</p>
+                        <div>
+                          <div className="flex items-center gap-2">
+                            <h3 className="font-serif font-medium text-foreground">{layer.name} Brain</h3>
+                            <span className={`rounded-full bg-${layer.color}/10 px-2 py-0.5 text-xs text-${layer.color}`}>
+                              {layer.area}
+                            </span>
+                          </div>
+                          <p className="text-sm text-muted-foreground">{layer.description}</p>
+                        </div>
                       </div>
-                    </div>
-                  </motion.div>
-                ))}
+                    </motion.div>
+                  ))}
+                </div>
+                <BrainDiagram />
               </div>
             </div>
           </div>
         </section>
 
         {/* Four Regulatory Layers */}
-        <section className="bg-gradient-to-b from-olive-wood-light/20 to-background py-24 lg:py-32">
+        <section className="bg-gradient-to-b from-gold/10 to-background py-24 lg:py-32">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <motion.div
               className="mb-16 text-center"
@@ -233,13 +238,13 @@ export default function SciencePage() {
                     <div className={`mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-${layer.color}/10 text-${layer.color} transition-transform group-hover:scale-110`}>
                       <layer.icon className="h-6 w-6" />
                     </div>
-                    
+
                     <span className={`font-mono text-xs font-bold uppercase tracking-wider text-${layer.color}`}>
                       {layer.layer}
                     </span>
-                    
+
                     <h3 className="mt-2 font-serif text-lg font-medium text-foreground">{layer.mechanism}</h3>
-                    
+
                     <div className="mt-4 flex flex-wrap gap-2">
                       {layer.tools.map((tool) => (
                         <span
@@ -257,11 +262,23 @@ export default function SciencePage() {
           </div>
         </section>
 
+        {/* Window of Tolerance */}
+        <section className="bg-cream py-24 lg:py-32">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <span className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">Visualization</span>
+              <h2 className="mt-6 font-serif text-3xl font-medium text-foreground lg:text-4xl">The Window of Tolerance</h2>
+              <p className="mt-4 max-w-2xl mx-auto text-muted-foreground">Play-based tools help children return to a regulated state where learning and healing are possible.</p>
+            </div>
+            <ToleranceWindow />
+          </div>
+        </section>
+
         {/* Research Document */}
         <section className="py-24">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <motion.div
-              className="relative mx-auto max-w-3xl overflow-hidden rounded-3xl bg-gradient-to-br from-honey-bronze-light/30 to-transparent p-1"
+              className="relative mx-auto max-w-3xl overflow-hidden rounded-3xl bg-gradient-to-br from-gold/30 to-transparent p-1"
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
@@ -269,11 +286,11 @@ export default function SciencePage() {
             >
               <div className="rounded-[22px] bg-card/95 backdrop-blur-xl p-8 lg:p-12">
                 <div className="flex items-start gap-4">
-                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-honey-bronze/10">
-                    <FileText className="h-7 w-7 text-honey-bronze" />
+                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-gold/10">
+                    <FileText className="h-7 w-7 text-gold" />
                   </div>
                   <div>
-                    <span className="font-mono text-xs uppercase tracking-[0.2em] text-honey-bronze">Download</span>
+                    <span className="font-mono text-xs uppercase tracking-[0.2em] text-gold">Download</span>
                     <h3 className="mt-2 font-serif text-xl font-medium text-foreground">Research white paper</h3>
                     <p className="mt-2 text-muted-foreground">
                       Full citations and evidence for each intervention type.
@@ -290,7 +307,7 @@ export default function SciencePage() {
         </section>
 
         {/* CTA */}
-        <section className="bg-deep-twilight py-24">
+        <section className="bg-forest py-24">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <motion.div
               className="text-center"
@@ -298,10 +315,10 @@ export default function SciencePage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="font-serif text-3xl font-medium text-white lg:text-4xl">
+              <h2 className="font-serif text-3xl font-medium text-cream lg:text-4xl">
                 Bring evidence-based play to your organization
               </h2>
-              <p className="mx-auto mt-4 max-w-xl text-lg text-white/70">
+              <p className="mx-auto mt-4 max-w-xl text-lg text-cream/70">
                 Partner with us for playkits and staff training.
               </p>
               <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">

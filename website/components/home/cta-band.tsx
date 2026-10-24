@@ -9,17 +9,27 @@ export function CtaBand() {
   const prefersReducedMotion = useReducedMotion()
 
   return (
-    <section className="relative overflow-hidden bg-warm-yellow py-32 lg:py-40">
-      {/* Subtle decorative elements */}
+    <section className="relative overflow-hidden bg-terracotta py-32 lg:py-40">
+      {/* Decorative watermark */}
+      <div
+        className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden select-none"
+        aria-hidden="true"
+      >
+        <span className="font-handwritten text-[20rem] font-bold leading-none text-cream/5 -rotate-12">
+          heal
+        </span>
+      </div>
+
+      {/* Decorative circles */}
       <motion.div
-        className="absolute -left-20 -top-20 h-80 w-80 rounded-full bg-coral/20"
+        className="absolute -left-20 -top-20 h-80 w-80 rounded-full bg-cream/10"
         initial={{ scale: 0 }}
         whileInView={{ scale: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
       />
       <motion.div
-        className="absolute -bottom-20 -right-20 h-96 w-96 rounded-full bg-primary/10"
+        className="absolute -bottom-20 -right-20 h-96 w-96 rounded-full bg-forest/10"
         initial={{ scale: 0 }}
         whileInView={{ scale: 1 }}
         viewport={{ once: true }}
@@ -33,15 +43,15 @@ export function CtaBand() {
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
-          <span className="font-mono text-xs uppercase tracking-[0.2em] text-warm-yellow-foreground/60">
+          <span className="font-mono text-xs uppercase tracking-[0.2em] text-cream/60">
             Join the mission
           </span>
 
-          <h2 className="mt-6 font-serif text-4xl font-medium leading-tight text-warm-yellow-foreground sm:text-5xl lg:text-6xl text-balance">
-            Every child deserves the chance to heal through play
+          <h2 className="mt-6 font-serif text-4xl font-medium leading-tight text-cream sm:text-5xl lg:text-7xl text-balance">
+            Every child deserves to heal.
           </h2>
 
-          <p className="mx-auto mt-8 max-w-2xl text-lg text-warm-yellow-foreground/80">
+          <p className="mx-auto mt-8 max-w-2xl text-lg text-cream/80">
             Your donation or partnership helps us reach more children with evidence-based tools for healing. 100% goes
             directly to programs.
           </p>
@@ -50,7 +60,7 @@ export function CtaBand() {
             <Button
               asChild
               size="lg"
-              className="h-14 rounded-full bg-foreground px-10 text-base text-background hover:bg-foreground/90"
+              className="h-14 rounded-full bg-cream px-10 text-base text-terracotta hover:bg-cream/90"
             >
               <a href="https://gofundme.com/playkits" target="_blank" rel="noopener noreferrer">
                 Donate now
@@ -61,7 +71,7 @@ export function CtaBand() {
               asChild
               variant="ghost"
               size="lg"
-              className="h-14 px-8 text-base text-warm-yellow-foreground hover:bg-warm-yellow-foreground/10"
+              className="h-14 px-8 text-base text-cream/80 hover:bg-cream/10 border border-cream/30"
             >
               <Link href="/partners">Become a partner</Link>
             </Button>

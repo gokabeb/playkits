@@ -1,28 +1,33 @@
 "use client"
 
 import { motion, useReducedMotion } from "framer-motion"
+import { CountUp } from "@/components/ui/count-up"
 
 const stats = [
   {
-    value: "100%",
+    value: null,
+    countEnd: 100,
+    countSuffix: "%",
     label: "of donations go to programs",
     sublabel: "Zero overhead. Zero salaries.",
-    color: "text-deep-twilight",
-    bg: "bg-deep-twilight/5",
+    color: "text-forest",
+    bg: "bg-forest/5",
   },
   {
     value: "501(c)(3)",
+    countEnd: null,
     label: "registered nonprofit",
     sublabel: "Tax-deductible donations",
-    color: "text-honey-bronze",
-    bg: "bg-honey-bronze/5",
+    color: "text-terracotta",
+    bg: "bg-terracotta/5",
   },
   {
     value: "Partner-driven",
+    countEnd: null,
     label: "scaling model",
     sublabel: "Reaching more children through trusted orgs",
-    color: "text-rosewood",
-    bg: "bg-rosewood/5",
+    color: "text-gold",
+    bg: "bg-gold/5",
   },
 ]
 
@@ -59,7 +64,11 @@ export function ByTheNumbers() {
               }}
             >
               <p className={`font-serif text-4xl font-medium lg:text-5xl ${stat.color}`}>
-                {stat.value}
+                {stat.countEnd !== null ? (
+                  <CountUp end={stat.countEnd} suffix={stat.countSuffix ?? ""} />
+                ) : (
+                  stat.value
+                )}
               </p>
               <p className="mt-3 text-base font-medium text-foreground">{stat.label}</p>
               <p className="mt-1 text-sm text-muted-foreground">{stat.sublabel}</p>

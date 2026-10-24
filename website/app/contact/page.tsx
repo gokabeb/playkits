@@ -10,7 +10,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Label } from "@/components/ui/label"
-import { Mail, MapPin, Send, CheckCircle, Clock, Heart } from "lucide-react"
+import { Mail, MapPin, Send, CheckCircle, Clock, Heart, Linkedin } from "lucide-react"
 
 const interests = [
   { id: "donating", label: "Donating" },
@@ -59,8 +59,8 @@ export default function ContactPage() {
       <main>
         {/* Hero */}
         <section className="relative min-h-[50vh] overflow-hidden bg-background pt-24">
-          <div className="absolute inset-0 bg-gradient-to-b from-deep-twilight-light/15 to-transparent" />
-          
+          <div className="absolute inset-0 bg-gradient-to-b from-forest/10 to-transparent" />
+
           <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
             <div className="flex min-h-[calc(50vh-6rem)] items-center py-12">
               <motion.div
@@ -69,7 +69,7 @@ export default function ContactPage() {
                 initial="hidden"
                 animate="visible"
               >
-                <motion.span 
+                <motion.span
                   variants={itemVariants}
                   className="mb-6 inline-block font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground"
                 >
@@ -83,9 +83,9 @@ export default function ContactPage() {
                   Let's start a
                   <br />
                   <span className="relative inline-block">
-                    <span className="relative z-10 text-deep-twilight">conversation</span>
+                    <span className="relative z-10 text-terracotta">conversation</span>
                     <motion.span
-                      className="absolute -bottom-1 left-0 right-0 h-3 bg-deep-twilight-light/40 -z-0"
+                      className="absolute -bottom-1 left-0 right-0 h-3 bg-gold/40 -z-0"
                       initial={{ scaleX: 0 }}
                       animate={{ scaleX: 1 }}
                       transition={{ delay: 0.6, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
@@ -94,7 +94,7 @@ export default function ContactPage() {
                   </span>
                 </motion.h1>
 
-                <motion.p 
+                <motion.p
                   variants={itemVariants}
                   className="mt-6 max-w-md text-lg text-muted-foreground"
                 >
@@ -110,7 +110,7 @@ export default function ContactPage() {
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
               {/* Form */}
-              <motion.div 
+              <motion.div
                 className="lg:col-span-7"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -118,8 +118,8 @@ export default function ContactPage() {
                 transition={{ duration: 0.6 }}
               >
                 {submitted ? (
-                  <motion.div 
-                    className="rounded-3xl bg-gradient-to-br from-olive-wood-light/30 to-transparent p-1"
+                  <motion.div
+                    className="rounded-3xl bg-gradient-to-br from-gold/15 to-transparent p-1"
                     initial={{ scale: 0.95, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     transition={{ duration: 0.5 }}
@@ -131,7 +131,7 @@ export default function ContactPage() {
                         animate={{ scale: 1 }}
                         transition={{ delay: 0.2, type: "spring" }}
                       >
-                        <CheckCircle className="mx-auto h-16 w-16 text-olive-wood" />
+                        <CheckCircle className="mx-auto h-16 w-16 text-forest" />
                       </motion.div>
                       <h2 className="mt-6 font-serif text-3xl font-medium text-foreground">Thank you!</h2>
                       <p className="mt-3 text-muted-foreground">
@@ -140,8 +140,8 @@ export default function ContactPage() {
                     </div>
                   </motion.div>
                 ) : (
-                  <div 
-                    className="rounded-3xl bg-gradient-to-br from-deep-twilight-light/15 to-transparent p-1"
+                  <div
+                    className="rounded-3xl bg-gradient-to-br from-forest/10 to-transparent p-1"
                     style={{ boxShadow: "0 25px 50px -12px rgba(77, 62, 244, 0.1)" }}
                   >
                     <div className="rounded-[22px] bg-card/95 backdrop-blur-xl p-8 lg:p-10">
@@ -202,7 +202,7 @@ export default function ContactPage() {
               </motion.div>
 
               {/* Contact Info */}
-              <motion.div 
+              <motion.div
                 className="lg:col-span-5"
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -211,21 +211,21 @@ export default function ContactPage() {
               >
                 <div className="sticky top-32 space-y-6">
                   {/* Email Card */}
-                  <motion.div 
-                    className="rounded-3xl bg-gradient-to-br from-rosewood/15 to-transparent p-1"
+                  <motion.div
+                    className="rounded-3xl bg-gradient-to-br from-terracotta/15 to-transparent p-1"
                     style={{ boxShadow: "0 20px 40px -12px rgba(244, 11, 112, 0.1)" }}
                     whileHover={{ y: -4 }}
                     transition={{ type: "spring", stiffness: 400, damping: 17 }}
                   >
                     <div className="rounded-[22px] bg-card/95 backdrop-blur-xl p-6">
                       <div className="flex items-start gap-4">
-                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-rosewood/10">
-                          <Mail className="h-5 w-5 text-rosewood" />
+                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-terracotta/10">
+                          <Mail className="h-5 w-5 text-terracotta" />
                         </div>
                         <div>
                           <p className="font-medium text-foreground">Email</p>
-                          <a href="mailto:kgupta1219@gmail.com" className="text-sm text-muted-foreground hover:text-rosewood transition-colors">
-                            kgupta1219@gmail.com
+                          <a href="mailto:karan@guptasf.com" className="text-sm text-muted-foreground hover:text-terracotta transition-colors">
+                            karan@guptasf.com
                           </a>
                         </div>
                       </div>
@@ -233,16 +233,16 @@ export default function ContactPage() {
                   </motion.div>
 
                   {/* Location Card */}
-                  <motion.div 
-                    className="rounded-3xl bg-gradient-to-br from-honey-bronze/15 to-transparent p-1"
+                  <motion.div
+                    className="rounded-3xl bg-gradient-to-br from-gold/15 to-transparent p-1"
                     style={{ boxShadow: "0 20px 40px -12px rgba(254, 144, 1, 0.1)" }}
                     whileHover={{ y: -4 }}
                     transition={{ type: "spring", stiffness: 400, damping: 17 }}
                   >
                     <div className="rounded-[22px] bg-card/95 backdrop-blur-xl p-6">
                       <div className="flex items-start gap-4">
-                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-honey-bronze/10">
-                          <MapPin className="h-5 w-5 text-honey-bronze" />
+                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gold/10">
+                          <MapPin className="h-5 w-5 text-gold" />
                         </div>
                         <div>
                           <p className="font-medium text-foreground">Location</p>
@@ -253,16 +253,16 @@ export default function ContactPage() {
                   </motion.div>
 
                   {/* Response Time Card */}
-                  <motion.div 
-                    className="rounded-3xl bg-gradient-to-br from-olive-wood/15 to-transparent p-1"
+                  <motion.div
+                    className="rounded-3xl bg-gradient-to-br from-forest/10 to-transparent p-1"
                     style={{ boxShadow: "0 20px 40px -12px rgba(152, 140, 103, 0.1)" }}
                     whileHover={{ y: -4 }}
                     transition={{ type: "spring", stiffness: 400, damping: 17 }}
                   >
                     <div className="rounded-[22px] bg-card/95 backdrop-blur-xl p-6">
                       <div className="flex items-start gap-4">
-                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-olive-wood/10">
-                          <Clock className="h-5 w-5 text-olive-wood" />
+                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-forest/10">
+                          <Clock className="h-5 w-5 text-forest" />
                         </div>
                         <div>
                           <p className="font-medium text-foreground">Response time</p>
@@ -272,10 +272,37 @@ export default function ContactPage() {
                     </div>
                   </motion.div>
 
+                  {/* LinkedIn Card */}
+                  <motion.div
+                    className="rounded-3xl bg-gradient-to-br from-forest/10 to-transparent p-1"
+                    style={{ boxShadow: "0 20px 40px -12px rgba(27, 58, 45, 0.1)" }}
+                    whileHover={{ y: -4 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                  >
+                    <div className="rounded-[22px] bg-card/95 backdrop-blur-xl p-6">
+                      <div className="flex items-start gap-4">
+                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-forest/10">
+                          <Linkedin className="h-5 w-5 text-forest" />
+                        </div>
+                        <div>
+                          <p className="font-medium text-foreground">LinkedIn</p>
+                          <a
+                            href="https://www.linkedin.com/in/karanguptasf/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-sm text-muted-foreground hover:text-forest transition-colors"
+                          >
+                            linkedin.com/in/karanguptasf
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+
                   {/* Volunteer note */}
                   <div className="rounded-2xl border border-border/50 bg-card/50 p-5">
                     <div className="flex items-center gap-3">
-                      <Heart className="h-5 w-5 text-rosewood" />
+                      <Heart className="h-5 w-5 text-terracotta" />
                       <p className="text-sm text-muted-foreground">
                         We're a small, 100% volunteer-run team.
                       </p>

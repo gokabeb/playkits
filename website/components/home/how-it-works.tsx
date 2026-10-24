@@ -54,7 +54,7 @@ export function HowItWorks() {
         {/* Vertical timeline */}
         <div className="relative">
           {/* Timeline line */}
-          <div className="absolute bottom-0 left-8 top-0 hidden w-px bg-border lg:left-1/2 lg:block" />
+          <div className="absolute bottom-0 left-8 top-0 hidden w-px bg-forest/20 lg:left-1/2 lg:block" />
 
           <div className="space-y-16 lg:space-y-0">
             {steps.map((step, index) => (
@@ -75,10 +75,10 @@ export function HowItWorks() {
                   className={`relative pb-8 lg:pb-24 ${index % 2 === 0 ? "lg:text-right" : "lg:order-2 lg:text-left"}`}
                 >
                   {/* Mobile timeline dot */}
-                  <div className="absolute left-8 top-0 hidden h-4 w-4 -translate-x-1/2 rounded-full border-4 border-background bg-primary lg:hidden" />
+                  <div className="absolute left-8 top-0 hidden h-4 w-4 -translate-x-1/2 rounded-full border-4 border-background bg-forest lg:hidden" />
 
                   {/* Number */}
-                  <span className="font-mono text-sm text-primary/60">Step {step.number}</span>
+                  <span className="font-mono text-sm text-gold">Step {step.number}</span>
 
                   {/* Title */}
                   <h3 className="mt-2 text-2xl font-semibold text-foreground lg:text-3xl">{step.title}</h3>
@@ -90,11 +90,11 @@ export function HowItWorks() {
                 {/* Timeline node - center on desktop */}
                 <div className="absolute left-1/2 top-0 hidden -translate-x-1/2 lg:block">
                   <motion.div
-                    className="flex h-16 w-16 items-center justify-center rounded-2xl bg-card shadow-lg ring-4 ring-background"
+                    className="flex h-16 w-16 items-center justify-center rounded-2xl bg-card shadow-lg ring-4 ring-background ring-forest/10"
                     whileHover={prefersReducedMotion ? {} : { scale: 1.1, rotate: -5 }}
                     transition={{ type: "spring", stiffness: 400, damping: 17 }}
                   >
-                    <step.icon className="h-7 w-7 text-primary" />
+                    <step.icon className="h-7 w-7 text-forest" />
                   </motion.div>
                 </div>
 
